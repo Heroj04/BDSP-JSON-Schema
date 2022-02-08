@@ -1,0 +1,28 @@
+{
+    "name": "bdsp-json-schema",
+    "displayName": "BDSP JSON Schema",
+    "description": "JSON Schemas for BDSP Tables and Objects",
+    "version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Heroj04/bdsp-json-schema"
+	},
+	"homepage": "https://github.com/Heroj04/bdsp-json-schema#readme",
+	"bugs": "https://github.com/Heroj04/bdsp-json-schema/issues",
+    "publisher": "Heroj04",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "categories": [
+        "Formatters",
+        "Other"
+    ],
+    "contributes": {
+        "jsonValidation": [
+            {
+                "fileMatch": "noneYet",
+                "url": "NoWhere"
+            }
+        ]
+    }
+}
