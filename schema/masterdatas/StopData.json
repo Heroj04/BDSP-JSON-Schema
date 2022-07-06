@@ -1,0 +1,125 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"title": "StopData",
+	"description": "Stopdatas are your 'trigger' events and require a Work variable to have a certain value in them in order to be triggered when the player steps on the specified tile. The player, if travelling fast enough with a variable framerate, can skip past single width triggers, hence why ILCA adds invisible walls (OGI 556) everywhere in the basegame.",
+	"type": "object",
+	"properties": {
+		"m_GameObject": {
+			"type": "object",
+			"properties": {
+				"m_FileID": {
+					"type": "integer"
+				},
+        		"m_PathID": {
+					"type": "integer"
+				}
+			}
+		},
+		"m_Enabled": {
+			"type": "integer"
+		},
+		"m_Script": {
+			"type": "object",
+			"properties": {
+				"m_FileID": {
+					"type": "integer"
+				},
+        		"m_PathID": {
+					"type": "integer"
+				}
+			}
+		},
+		"m_Name": {
+			"description": "Name of the StopData table",
+			"type": "string"
+		},
+		"Data": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"ID",
+					"Position",
+					"HeightLayer",
+					"Size",
+					"ContactLabel",
+					"Param",
+					"Work"
+				],
+				"defaultSnippets": [
+					{
+						"label": "New StopData",
+						"description": "Defines a new StopData Trigger",
+						"body": {
+							"ID": "${1:ID}",
+							"Position": {
+								"x": "^${2:0.0}",
+								"y": "^${3:0.0}"
+							},
+							"HeightLayer": "^${4:1}",
+							"Size": {
+								"x": "^${5:1.0}",
+								"y": "^${6:1.0}"
+							},
+							"ContactLabel": "${7:contact_label}",
+							"Param": "^${8:0}",
+							"Work": "^${9:0}"
+						}
+					}
+				],
+				"properties": {
+					"ID": {
+						"description": "The ID of which the trigger can be referenced.",
+						"type": "string"
+					},
+					"Position": {
+						"description": "The X/Y position of the initial tile.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal position of the initial tile.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical position of the initial tile.",
+								"type": "number"
+							}
+						}
+					},
+					"HeightLayer": {
+						"description": "The height.",
+						"type": "integer"
+					},
+					"Size": {
+						"description": "The size of the trigger in X/Y directions.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal size of the trigger.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical size of the trigger",
+								"type": "number"
+							}
+						}
+					},
+					"ContactLabel": {
+						"description": "The script function name that is called upon entering the trigger zone.",
+						"type": "string"
+					},
+					"Param": {
+						"description": "The value that must be in the specified work value in order for the event to trigger.",
+						"type": "integer"
+					},
+					"Work": {
+						"description": "The specified Work value.",
+						"type": "integer"
+					}
+				}
+			}
+		}
+	}
+}

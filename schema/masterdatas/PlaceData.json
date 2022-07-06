@@ -1,0 +1,261 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"title": "PlaceData",
+	"description": "Placedatas are where you put any and all interactables that you want in your mod. Any NPC, field item, or television that does absolutely anything in BDSP is a placedata object.",
+	"type": "object",
+	"properties": {
+		"m_GameObject": {
+			"type": "object",
+			"properties": {
+				"m_FileID": {
+					"type": "integer"
+				},
+        		"m_PathID": {
+					"type": "integer"
+				}
+			}
+		},
+		"m_Enabled": {
+			"type": "integer"
+		},
+		"m_Script": {
+			"type": "object",
+			"properties": {
+				"m_FileID": {
+					"type": "integer"
+				},
+        		"m_PathID": {
+					"type": "integer"
+				}
+			}
+		},
+		"m_Name": {
+			"description": "Name of the PlaceData table",
+			"type": "string"
+		},
+		"Data": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"ID",
+					"zoneID",
+					"TrainerID",
+					"ObjectGraphicIndex",
+					"ColorIndex",
+					"Position",
+					"HeightLayer",
+					"HeightIgnore",
+					"Size",
+					"Rotation",
+					"MoveLimit",
+					"EventType",
+					"MoveCode",
+					"MoveParam0",
+					"MoveParam1",
+					"MoveParam2",
+					"TalkLabel",
+					"ContactLabel",
+					"Work",
+					"Dowsing",
+					"LoadFirst",
+					"DoNotLoad",
+					"TalkToRange",
+					"TalkToSize",
+					"TalkBit"
+				],
+				"defaultSnippets": [
+					{
+						"label": "New PlaceData",
+						"description": "Defines a new PlaceData Object",
+						"body": {
+							"ID": "${1:ID}",
+							"zoneID": "^${2:0}",
+							"TrainerID": "^${3:0}",
+							"ObjectGraphicIndex": "^${4:1}",
+							"ColorIndex": "^${5:0}",
+							"Position": {
+								"x": "^${6:0.0}",
+								"y": "^${7:0.0}"
+							},
+							"HeightLayer": "^${8:1}",
+							"HeightIgnore": "^${9:0}",
+							"Size": {
+								"x": "^${10:1.0}",
+								"y": "^${11:1.0}"
+							},
+							"Rotation": "^${12:0}",
+							"MoveLimit": {
+								"x": "^${13:0.0}",
+								"y": "^${14:0.0}"
+							},
+							"EventType": "^${15:0}",
+							"MoveCode": "^${16:0}",
+							"MoveParam0": "^${17:0}",
+							"MoveParam1": "^${18:0}",
+							"MoveParam2": "^${19:0}",
+							"TalkLabel": "${20:talk_label}",
+							"ContactLabel": "${21:}",
+							"Work": "^${22:4000}",
+							"Dowsing": "^${23:0}",
+							"LoadFirst": "^${24:0}",
+							"DoNotLoad": "^${25:0}",
+							"TalkToRange": "^${26:1.25}",
+							"TalkToSize": {
+								"x": "^${27:0.0}",
+								"y": "^${28:0.0}"
+							},
+							"TalkBit": "^${29:15}"
+						}
+					}
+				],
+				"properties": {
+					"ID": {
+						"description": "Must be unique and is how the placedata object is called/referenced in scripting, it is good practice to keep this capitalized.",
+						"type": "string"
+					},
+					"zoneID": {
+						"description": "This is what determines which zone the placedata appears in, a list of zoneIDs will be made available at a later point.",
+						"type": "integer"
+					},
+					"TrainerID": {
+						"description": "If you want your placedata object to be a 'line of sight' trainer, you must provide it with a trainerID, which is a reference to which party you want it to have.",
+						"type": "integer"
+					},
+					"ObjectGraphicIndex": {
+						"description": "This is what determines what your Placedata will look like, for example, 1 -> 121 would be your different NPCs, 501-505 would be your different hidden machine blockers, such as cut trees and strength boulders. To reference Pokemon you would use DexID/00/00, the zeroes referring to formID, gender, shiny status and so forth. Example: 1510000 would be Mew.",
+						"type": "integer"
+					},
+					"ColorIndex": {
+						"description": "Unknown",
+						"type": "integer"
+					},
+					"Position": {
+						"description": "The X/Y position that your object will be placed at in the zone that you determined.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal position that your object will be placed at in the zone that you determined.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical position that your object will be placed at in the zone that you determined.",
+								"type": "number"
+							}
+						}
+					},
+					"HeightLayer": {
+						"description": "The height position that your object will be placed at. This cannot be higher than ground level, but it can be lower, so if your object is not appearing/is underground, I suggest increasing this number.",
+						"type": "integer"
+					},
+					"HeightIgnore": {
+						"description": "This will allow you to interact with the object irrelevant of the height difference, if set to 1. This is commonly used in-game when interacting with rock climb objects.",
+						"type": "integer"
+					},
+					"Size": {
+						"description": "Determines the X/Y size of the object, 1 = 1 tile.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal size of the object.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical size of the object",
+								"type": "number"
+							}
+						}
+					},
+					"Rotation": {
+						"description": "Determines which directional rotation your correct will stand at. 0-360.",
+						"type": "integer"
+					},
+					"MoveLimit": {
+						"description": "Certain movecodes allow your object to 'wander', this will restrict it to X/Y from the starting position.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal 'wandering' limit.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical 'wandering' limit.",
+								"type": "number"
+							}
+						}
+					},
+					"EventType": {
+						"description": "This usually determines if something is a trainer, must be 1 if so. Otherwise, leave it at 0.",
+						"type": "integer"
+					},
+					"MoveCode": {
+						"description": "Determines how your object will stand/act. Up/down/left/right/moving/sitting down are all determined by this.",
+						"type": "integer"
+					},
+					"MoveParam0": {
+						"description": "Certain movecodes require this, more research required, but when using TrainerIDs, you must have a movecode of 14-17 and a moveparam0 of how many tiles you want the trainer's line of sight to be.",
+						"type": "integer"
+					},
+					"MoveParam1": {
+						"description": "Certain movecodes require this, more research required, but when using TrainerIDs, you must have a movecode of 14-17 and a moveparam0 of how many tiles you want the trainer's line of sight to be.",
+						"type": "integer"
+					},
+					"MoveParam2": {
+						"description": "Certain movecodes require this, more research required, but when using TrainerIDs, you must have a movecode of 14-17 and a moveparam0 of how many tiles you want the trainer's line of sight to be.",
+						"type": "integer"
+					},
+					"TalkLabel": {
+						"description": "This is the function name that will be called when you interact with the object and is how you get scripts called upon interaction.",
+						"type": "string"
+					},
+					"ContactLabel": {
+						"description": "Pretty sure this is stubbed. Never managed to get it working.",
+						"type": "string"
+					},
+					"Work": {
+						"description": "This is a flag and is what determines if the object is visible/invisible. With a flag of 4000 it will always be visible. For example, if your object has a Work of 2816 and that flag is 'set' during a script, the next time you enter that area, the object will no longer be there.",
+						"type": "integer"
+					},
+					"Dowsing": {
+						"description": "Accepts values of 0-2, 1-2 if the item is intended as a hidden item, it's what determines how far away your itemfinder will pick it up.",
+						"type": "integer"
+					},
+					"LoadFirst": {
+						"description": "Gives a priority to the loading of objects that may exist on the same tile, or require priority loading.",
+						"type": "integer"
+					},
+					"DoNotLoad": {
+						"description": "Stubbed?",
+						"type": "integer"
+					},
+					"TalkToRange": {
+						"description": "Determines how far away you can be in order to interact with the object.",
+						"type": "number"
+					},
+					"TalkToSize": {
+						"description": "Determines how far away you can be in order to interact with the object.",
+						"type": "object",
+						"required": ["x", "y"],
+						"properties": {
+							"x": {
+								"description": "The horizontal size of the interactable area.",
+								"type": "number"
+							},
+							"y": {
+								"description": "The vertical size of the interactable area.",
+								"type": "number"
+							}
+						}
+					},
+					"TalkBit": {
+						"description": "Determines which direction you can talk to an object from, best practice is to leave this at 15.",
+						"type": "integer"
+					}
+				}
+			}
+		}
+	}
+}

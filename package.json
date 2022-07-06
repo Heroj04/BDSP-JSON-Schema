@@ -1,7 +1,8 @@
 {
     "name": "bdsp-json-schema",
     "displayName": "BDSP JSON Schema",
-    "description": "JSON Schemas for BDSP Tables and Objects",
+    "description": "JSON Schemas for Pokemon BDSP Tables and Objects",
+    "icon": "BDSP_JSON.png",
     "version": "1.0.0",
 	"repository": {
 		"type": "git",
@@ -20,8 +21,12 @@
     "contributes": {
         "jsonValidation": [
             {
-                "fileMatch": "noneYet",
-                "url": "NoWhere"
+                "fileMatch": "PlaceData_*.json",
+                "url": "./schema/masterdatas/PlaceData.json"
+            },
+            {
+                "fileMatch": "StopData_*.json",
+                "url": "./schema/masterdatas/StopData.json"
             }
         ]
     }
