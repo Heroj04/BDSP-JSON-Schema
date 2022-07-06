@@ -4,4 +4,7 @@ All notable changes to the "bdsp-json-schema" extension will be documented in th
 
 ## [1.0]
 
-- Nothing
+- Initial release
+- Support masterdatas files
+  - PlaceData
+  - StopData
